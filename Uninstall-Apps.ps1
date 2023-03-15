@@ -1,3 +1,10 @@
+<# 
+       This script will detect all installed apps in Windows, display them in a gridview window, and allow you to select apps to uninstall.
+    Once you select the apps you want to uninstall and click OK, the script will uninstall them one by one.
+    Please note that uninstalling programs can cause data loss or system instability. 
+    Always create a backup and ensure you know what each program does before proceeding with the uninstallation.
+#>
+
 # Define a function to uninstall a program using its DisplayName
 function Uninstall-Program {
     param (
