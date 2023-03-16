@@ -1,4 +1,17 @@
-﻿<# 
+﻿# Load assembly for MessageBox
+Add-Type -AssemblyName System.Windows.Forms
+
+# Display disclaimer message
+$disclaimerText = "Warning, this script uninstalls applications forcibly. Please only continue if you have backed up all your data!"
+$disclaimerTitle = "Disclaimer"
+$disclaimerButtons = [System.Windows.Forms.MessageBoxButtons]::OKCancel
+$disclaimerIcon = [System.Windows.Forms.MessageBoxIcon]::Warning
+
+$disclaimerResult = [System.Windows.Forms.MessageBox]::Show($disclaimerText, $disclaimerTitle, $disclaimerButtons, $disclaimerIcon)
+
+if ($disclaimerResult -eq "OK") {
+    
+<# 
        This script will detect all installed apps in Windows, display them in a gridview window, and allow you to select apps to uninstall.
     Once you select the apps you want to uninstall and click OK, the script will uninstall them one by one.
     Please note that uninstalling programs can cause data loss or system instability. 
@@ -17,7 +30,7 @@ function Uninstall-Program {
                        Select-Object -ExpandProperty UninstallString
 
     if ($uninstallString) {
-        Start-Process cmd -ArgumentList "/c $uninstallString /norestart" -Wait
+        Start-Process cmd -ArgumentList "/c $uninstallString" -Wait
         return $true
     } else {
         Write-Host "Unable to find the uninstall string for $DisplayName."
@@ -58,4 +71,7 @@ if ($programsToUninstall) {
     Write-Host "Uninstallation process completed."
 } else {
     Write-Host "No programs were selected for uninstallation."
+}
+         } else {
+    Write-Host "User canceled the operation."
 }
