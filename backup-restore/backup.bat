@@ -9,6 +9,7 @@
 ::Moved Favourites to resolve issue
 ::Updated added XLStart and WordStartup
 ::Updated added Start Menu after ASRmageddon
+::Updated - by Rene Sawyer, removed Bookmarks* from Chrome backup
 
 ping 127.0.0.1 -n 10
 
@@ -187,9 +188,9 @@ echo CopyingChromeBookmarks >> "%OneDriveCommercial%\backup\log.txt"
 SET BChrome=%LOCALAPPDATA%\Google\Chrome\User Data\Default
 SET RChrome="%Onedrive%\Backup\Chrome"
 if not exist "%Onedrive%\Backup\Chrome" mkdir "%Onedrive%\Backup\Chrome"
-XCopy "%BChrome%\Bookmarks*" "%Onedrive%\Backup\Chrome\Bookmarks*" /E /Y /C /Z /D >> "%Onedrive%\backup\log.txt"
+XCopy "%BChrome%\" "%Onedrive%\Backup\Chrome\" /E /Y /C /Z /D >> "%Onedrive%\backup\log.txt"
 if not exist "%OneDriveCommercial%\Backup\Chrome" mkdir "%OneDriveCommercial%\Backup\Chrome"
-XCopy "%BChrome%\Bookmarks*" "%OneDriveCommercial%\Backup\Chrome\Bookmarks*" /E /Y /C /Z /D >> "%OneDriveCommercial%\backup\log.txt"
+XCopy "%BChrome%\" "%OneDriveCommercial%\Backup\Chrome\" /E /Y /C /Z /D >> "%OneDriveCommercial%\backup\log.txt"
 
 ::GET MAPPED DRIVES
 echo MappingDrives >> "%Onedrive%\backup\log.txt"
